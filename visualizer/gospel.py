@@ -9,7 +9,7 @@ HORIZONTAL_CHART = True
 
 response = requests.get('http://localhost:8000/gospel_analysis', json=[])
 resp_json = json.loads(response.text)
-word_counts = resp_json['word_counts']
+word_counts = resp_json['list_bigrams']
 print("word_counts received: " + str(len(word_counts)))
 
 tokens = []

@@ -1,3 +1,4 @@
+from collections import Counter, defaultdict
 import string
 from search_engine import SearchEngine
 from weather_predictor import WeatherPredictor
@@ -47,7 +48,19 @@ class MtPyDataWorldsService:
             list_words.append({"token":token, "cnt":word_counts[token]})
 
         list_words.sort(key=lambda x: x['cnt'], reverse=True)
-        ret = {"word_counts":list_words}
+        ret = {"word_counts":list_words}       
+
+        bigrams = [(tokens[i], tokens[i+1]) for i in range(len(tokens)-1)]
+    
+        bigram_counts = Counter(bigrams)
+        
+        most_common = bigram_counts.most_common(50)
+        
+        list_bigrams = []
+        for bigram, count in most_common:
+            list_bigrams.append({"token":' '.join(bigram), "cnt":count})
+        ret["list_bigrams"] = list_bigrams      
+
         return ret
 
         

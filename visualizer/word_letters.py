@@ -7,7 +7,7 @@ alphabet_map = {}
 for i in range(len(alphabet)):
     alphabet_map[alphabet[i]] = i + 1
 
-word = "tarchies"
+word = "caesar"
 word = word.lower()
 
 xs = []
